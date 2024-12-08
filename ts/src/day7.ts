@@ -39,24 +39,30 @@ const op3 = (a: number, b: number, op: number) => {
 // get max binary number for n bits
 const maxn = (nums: number[], pow = 2) => Math.pow(pow, nums.length - 1) - 1;
 
-const compute2 = (ops: number, nums: number[]) => {
+const compute2 = (ops: number, nums: number[], eq: number) => {
   let counter = ops;
+  let sum = nums[0];
 
-  return nums.slice(1).reduce((acc, n) => {
-    const r = op2(acc, n, counter);
+  for (const n of nums.slice(1)) {
+    sum = op2(sum, n, counter);
+    if (sum > eq) return false;
     counter >>>= 1;
-    return r;
-  }, nums[0]);
+  }
+
+  return sum === eq;
 };
 
-const compute3 = (ops: number, nums: number[]) => {
+const compute3 = (ops: number, nums: number[], eq: number) => {
   let counter = ops;
+  let sum = nums[0];
 
-  return nums.slice(1).reduce((acc, n) => {
-    const r = op3(acc, n, counter);
+  for (const n of nums.slice(1)) {
+    sum = op3(sum, n, counter);
+    if (sum > eq) return false;
     counter = Math.floor(counter / 3);
-    return r;
-  }, nums[0]);
+  }
+
+  return sum === eq;
 };
 
 let p1 = 0;
@@ -67,14 +73,14 @@ for (const [eq, nums] of equations) {
   const m3 = maxn(nums, 3);
 
   for (let i = 0; i <= m2; i++) {
-    if (compute2(i, nums) === eq) {
+    if (compute2(i, nums, eq)) {
       p1 += eq;
       break;
     }
   }
 
   for (let i = 0; i <= m3; i++) {
-    if (compute3(i, nums) === eq) {
+    if (compute3(i, nums, eq)) {
       p2 += eq;
       break;
     }
