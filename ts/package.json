@@ -1,14 +1,28 @@
 {
-  "name": "aoc-2024-ts",
-  "module": "index.ts",
+  "name": "aoc2024",
+  "version": "1.0.0",
+  "description": "Advent of Code 2024 - solutions",
   "type": "module",
-  "devDependencies": {
-    "@types/bun": "latest"
+  "scripts": {
+    "start": "aocrunner day",
+    "build": "aocrunner build",
+    "format": "prettier -w src",
+    "update:readme": "aocrunner update:readme"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+  "keywords": [
+    "aoc"
+  ],
+  "author": "Austin Burdine",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "aocrunner": "^1.10.0",
+    "prettier": "^2.8.0"
   },
   "dependencies": {
     "es-toolkit": "^1.29.0"
+  },
+  "engines": {
+    "node": ">=16.13.0"
   }
 }

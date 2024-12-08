@@ -175,3 +175,4 @@ dist
 
 # inputs
 inputs/*.txt
+ts/src/**/input.txt
